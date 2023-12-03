@@ -1,10 +1,18 @@
-﻿namespace MongoConsole
+﻿using MongoDB.Driver;
+namespace MongoConsole
 {
-	internal class Program
+	public class Program
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello, World!");
+			var mongodbUrl = "mongodb+srv://mongocongo:JuXwXo6DUlcB9JMV@cluster0.fp6b2eq.mongodb.net/?retryWrites=true&w=majority";			
+			var mongoClient = new MongoClient(mongodbUrl);
+			var dbList = mongoClient.ListDatabases().ToList();
+			Console.WriteLine("The list of databases on this server is: ");
+			foreach (var db in dbList)
+			{
+				Console.WriteLine(db);
+			}
 		}
 	}
 }
